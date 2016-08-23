@@ -1,0 +1,12 @@
+#navbar-collapse-1.collapse.navbar-collapse
+  %ul.nav.navbar-nav.navbar-right
+    - if user_signed_in?
+      %li
+        = link_to destroy_user_session_path, method: :delete do
+          %span.glyphicon.glyphicon-off
+          Logout
+    - else
+      %li{class: (params[:controller] == "devise/sessions") ? "active" : nil}
+        = link_to new_user_session_path do
+          %span.glyphicon.glyphicon-off
+          Login
