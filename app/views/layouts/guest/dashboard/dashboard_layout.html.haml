@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %title= content_for?(:title) ? yield(:title) : 'User Starter'
+    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'User Starter'}"}
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %header
+      = render 'layouts/guest/dashboard/navigation'
+    %main{:role => "main"}
+      = render 'layouts/messages'
+      = render 'layouts/guest/sidebar'
+      #wrapper
+        #page-content-wrapper
+          .container-fluid
+            .row
+              .col-lg-12
+                = yield
+                %a#menu-toggle.btn.btn-default{:href => "#menu-toggle"} Toggle Menu
+      -# Menu Toggle Script
+      :javascript
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });

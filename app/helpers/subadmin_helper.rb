@@ -1,0 +1,2 @@
+module SubadminHelper
+end
